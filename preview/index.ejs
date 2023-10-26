@@ -34,19 +34,19 @@
     </article>
     <br style="clear:both;">
   </section>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
 <script>
 (function($) {
 
   // Reusables
-  var $templateSelect = $('#template-select'),
+  let $templateSelect = $('#template-select'),
     $body = $('body'),
     h = document.location.hash,
     drawerCookieName = 'mobile-drawer-hidden';
 
   // On change, reload template
   $templateSelect.on('change', function() {
-    var $s = $(this),
+    let $s = $(this),
       v = $s.val(),
       ms = new Date().getTime();  // We'll timestamp each iframe load for cache-busting
 
@@ -60,7 +60,7 @@
 
   // Preload selected template from hashed template:
   if (h && h.indexOf('template:') != -1) {
-    var tpl = h.split(':')[1];
+    let tpl = h.split(':')[1];
 
     $templateSelect.val(tpl).trigger('change');
 
@@ -68,7 +68,7 @@
 
   // Mobile Preview Drawer
   function mobilePreviewDrawer() {
-    var $toggleBtns = $('.js-drawer-toggle'),
+    let $toggleBtns = $('.js-drawer-toggle'),
       $mobileDrawer = $('#mobile-drawer'),
       drawerHiddenClass = 'mobile-drawer-hidden';
 
@@ -96,14 +96,14 @@
   // Debounce helper
   // url: http://davidwalsh.name/javascript-debounce-function
   function _debounce(func, wait, immediate) {
-    var timeout;
+    let timeout;
     return function() {
-      var context = this, args = arguments;
-      var later = function() {
+      let context = this, args = arguments;
+      let later = function() {
         timeout = null;
         if (!immediate) func.apply(context, args);
       };
-      var callNow = immediate && !timeout;
+      let callNow = immediate && !timeout;
       clearTimeout(timeout);
       timeout = setTimeout(later, wait);
       if (callNow) func.apply(context, args);
@@ -112,7 +112,7 @@
 
   // iFrame Sizing
   function resizeUi() {
-    var headerHeight = $('#header').height(),
+    let headerHeight = $('#header').height(),
       windowHeight = $(window).height(),
       uiHeightAvail = windowHeight - headerHeight,
       $fullHeightEls = $('.preview-ui, .preview-ui--full, .preview-ui--full iframe, .preview-ui--mobile');
@@ -121,7 +121,7 @@
   }
 
   // Debouce UI resizing
-  var resizeUiDebouced = _debounce(function() {
+  let resizeUiDebouced = _debounce(function() {
     resizeUi();
   }, 200);
 
@@ -134,17 +134,17 @@
 
 
 function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
+    let d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+d.toUTCString();
+    let expires = "expires="+d.toUTCString();
     document.cookie = cname + "=" + cvalue + "; " + expires;
 }
 
 function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0; i<ca.length; i++) {
-        var c = ca[i];
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for(let i=0; i<ca.length; i++) {
+        let c = ca[i];
         while (c.charAt(0)==' ') c = c.substring(1);
         if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
     }
@@ -152,7 +152,7 @@ function getCookie(cname) {
 }
 
 function checkCookie() {
-    var user = getCookie("username");
+    let user = getCookie("username");
     if (user != "") {
         alert("Welcome again " + user);
     } else {

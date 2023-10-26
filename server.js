@@ -1,4 +1,4 @@
-var express = require('express'),
+let express = require('express'),
     cheerio = require('cheerio'),
     fs = require('fs'),
     app = express();
@@ -15,7 +15,7 @@ app.get('/',function(req,res){
 
   res.status(200);
 
-  var data = {
+  let data = {
       templates: getTemplates()
   };
 
@@ -28,13 +28,13 @@ module.exports = app;
 
 // Helper function to get templates and their "subject" from <title> tag
 function getTemplates() {
-    var templates = [],
+    let templates = [],
         templateDir = __dirname + '/dist/',
         templateFiles = fs.readdirSync(templateDir);
 
     templateFiles.forEach( function (file) {
         if (file.substr(-5) === '.html') {
-          var contents = fs.readFileSync(templateDir + file, 'utf8');
+          let contents = fs.readFileSync(templateDir + file, 'utf8');
           
           if (contents) {
             $ = cheerio.load(contents);
